@@ -1,7 +1,29 @@
 <html>
     <head>
+        <script src="aframe-master.js"></script>
+        <script>
+            window.addEventListener('enter-vr', e=> {
+                var isMobile = AFRAME.utils.device.isMobile();
+                var hasVRHeadset = AFRAME.utils.device.checkHeadsetConnected();
+                alert("Has VR Device: " + isMobile || hasVRHeadset);
+            });
+
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var scene = document.querySelector("a-scene");
+                var vid = document.getElementById("video");
+                var videoSphere = document.getElementById("videoSphere");
+
+                if (vid != null)
+                    vid.play();
+                
+                if (videoSphere != null)
+                    videoSphere.components.material.material.map.image.play();
+            });
+        </script>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a-scene>
+            <a-videosphere src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-197/walking_the_dog_360_video_short.webm" material="" geometry="" scale=""></a-videosphere>
+        </a-scene>
     </body>
 </html>
